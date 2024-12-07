@@ -20,3 +20,5 @@ cabal.sandbox.config
 .stack-work/
 result
 .pre-commit-config.yaml
+.devenv
+.devenv.flake.nix

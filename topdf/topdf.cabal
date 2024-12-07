@@ -15,7 +15,7 @@ common warnings
     , text
     , turtle
 
-  hs-source-dirs:     app
+  hs-source-dirs:     .
 
 executable topdf
   import:  warnings
