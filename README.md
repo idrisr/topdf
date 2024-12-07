@@ -1,9 +1,4 @@
-# Get going
+# ToPDF
 
-Rename all the things "renameme" to whatever.
-
-run `nix develop` to get the pre-commit hook going.
-
-## Editor
-it's assumed that the editor, most likely nixvim, is configured separate from
-this.
+This cli program is for taking a directory of jpgs and then converting them into
+a single pdf.

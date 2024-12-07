@@ -9,8 +9,10 @@ common warnings
   default-extensions: OverloadedStrings
   build-depends:
     , base                   ^>=4.18.2.1
+    , directory
     , filepath
     , foldl
+    , optparse-applicative
     , terminal-progress-bar
     , text
     , turtle
