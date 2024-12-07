@@ -1,0 +1,9 @@
+session_name: topdf
+windows:
+  - window_name: haskell
+    layout: main-vertical
+    panes:
+      - shell_command:
+        - cd /home/hippoid/fun/topdf
+    options:
+      main-pane-width: 80

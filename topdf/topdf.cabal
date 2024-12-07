@@ -1,0 +1,22 @@
+cabal-version: 3.0
+name:          topdf
+version:       0.1.0.0
+build-type:    Simple
+
+common warnings
+  ghc-options:        -Wall
+  default-language:   Haskell2010
+  default-extensions: OverloadedStrings
+  build-depends:
+    , base                   ^>=4.18.2.1
+    , filepath
+    , foldl
+    , terminal-progress-bar
+    , text
+    , turtle
+
+  hs-source-dirs:     app
+
+executable topdf
+  import:  warnings
+  main-is: ToPdf.hs
