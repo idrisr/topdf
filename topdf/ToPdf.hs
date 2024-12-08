@@ -4,12 +4,13 @@ module Main where
 
 import Control.Foldl qualified as Fold
 import Control.Monad
+import Data.Ratio
 import Data.Text (pack)
 import Options.Applicative
 import System.Directory
 import System.FilePath
 import System.ProgressBar
-import Turtle hiding (header, input, o, output, splitDirectories)
+import Turtle hiding (g, header, input, o, output, splitDirectories, x, (%))
 
 data Params = Params FilePath FilePath
     deriving (Show)
@@ -29,7 +30,7 @@ main = do
         dirs <- liftIO $ Dirs <$> makeAbsolute i <*> makeAbsolute o <*> pure tmpdir
         cwd <- pwd
         count_ <- fold (find (suffix "jpg") cwd) Fold.length
-        pb <- liftIO $ newProgressBar defStyle 10 $ Progress 0 count_ ()
+        pb <- liftIO $ newProgressBar defStyle 10 $ Progress 0 (count_ + 1) ()
         sh $ pngToJpg dirs pb
         jpgToPdf dirs
 

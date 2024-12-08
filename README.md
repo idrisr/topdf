@@ -18,6 +18,13 @@ Available options:
 
 [![asciicast](https://asciinema.org/a/VFlvQbY31sSWoF3uUaG2Fh5tA.svg)](https://asciinema.org/a/VFlvQbY31sSWoF3uUaG2Fh5tA)
 
+## Installation
+
+### nix
+
+### nixos
+
+### docker
+
 ## Use Case
-I use this to take screenshots while watching downloaded videos, and then
-compile them into a pdf.
+Useful for compiling screenshots from a video into a single pdf.
