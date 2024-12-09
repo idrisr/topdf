@@ -13,9 +13,23 @@
       pkgs = nixpkgs.legacyPackages.${system};
       system = flake-utils.lib.system.x86_64-linux;
       topdf = pkgs.haskell.packages.${compiler}.callCabal2nix "" ./topdf { };
+      topdfW = pkgs.stdenvNoCC.mkDerivation {
+        meta.mainProgram = "topdf";
+        name = "topdf";
+        pname = "topdf";
+        dontUnpack = true;
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        installPhase = ''
+          mkdir -p "$out/bin"
+          cp ${topdf}/bin/topdf $out/bin/topdf
+          wrapProgram $out/bin/topdf --set PATH ${
+            pkgs.lib.makeBinPath [ pkgs.imagemagick ]
+          }
+        '';
+      };
     in {
       packages.${system} = {
-        default = topdf;
+        default = topdfW;
         inherit docker;
       };
     };
