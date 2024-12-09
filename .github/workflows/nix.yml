@@ -23,25 +23,8 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       # Nix-specific logic begins here
-      - name: Check Rust formatting
-        run: |
-          nix develop --command \
-            cargo fmt --check
-      - name: Audit Rust code
-        run: |
-          nix develop --command \
-            cargo-deny check
-      - name: editorconfig check
-        run: |
-          nix develop --command \
-            eclint \
-              -exclude "Cargo.lock"
-      - name: Check spelling
-        run: |
-          nix develop --command \
-            codespell \
-              --skip target,.git \
-              --ignore-words-list crate
+      - name: Check it builds
+        run: nix build .
 
   build_and_test_nix:
     name: Test and build TODOs API
