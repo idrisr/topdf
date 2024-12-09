@@ -29,33 +29,21 @@ jobs:
       - name: Check it builds
         run: nix build .
 
-  # build_and_test_nix:
-    # name: Test and build TODOs API
-    # needs: check_nix
-    # strategy:
-      # matrix:
-        # os: [ubuntu-22.04, macos-12]
-    # runs-on: ubuntu-22.04
-    # steps:
-      # - name: git checkout
-        # uses: actions/checkout@v3
-      # - name: Install Nix
-        # uses: DeterminateSystems/nix-installer-action@main
-      # - uses: DeterminateSystems/magic-nix-cache-action@main
-      # - name: Set up Rust cache
-        # uses: actions/cache@v3
-        # with:
-          # path: |
-            # ~/.cargo/bin/
-            # ~/.cargo/registry/index/
-            # ~/.cargo/registry/cache/
-            # ~/.cargo/git/db/
-            # target/
-          # key: todos-app-${{ hashFiles('**/Cargo.lock') }}
-      # - name: Test TODOs API
-        # run: |
-          # nix develop --command \
-            # cargo test
-      # - name: Build TODOs API
-        # # nix build would also work here because `todos` is the default package
-        # run: nix build .#todos
+  build_and_test_nix:
+    name: build flatpak appimage
+    needs: check_nix
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, macos-12]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v3
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: build package
+        run: |
+          nix build .
+      - name: Build flatpak
+        run: nix bundle --bundler github:ralismark/nix-appimage .
