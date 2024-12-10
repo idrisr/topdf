@@ -30,3 +30,7 @@ jobs:
           name: topdf.AppImage
           path: topdf.AppImage
           retention-days: 5
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "topdf.AppImage"
+          # bodyFile: "body.md"
