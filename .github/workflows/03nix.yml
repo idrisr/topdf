@@ -43,3 +43,9 @@ jobs:
         run: nix build .
       - name: Build flatpak
         run: nix bundle --bundler github:ralismark/nix-appimage .
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: topdf.AppImage
+          path: .
+          retention-days: 5
