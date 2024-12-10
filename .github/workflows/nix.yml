@@ -1,4 +1,4 @@
-name: Check, build, release topdf
+name: check, build, release topdf
 
 on:
   push:
@@ -12,34 +12,38 @@ jobs:
     name: check that it builds
     strategy:
       matrix:
-        os: [ubuntu-22.04, macos-12]
-    runs-on: ubuntu-22.04
+        os: [ubuntu-24.04, macos-12]
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      - name: some cache jive
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      # Nix-specific logic begins here
+      - name: build haskell executable
+        run: nix build .
+
+  build_and_test_nix:
+    name: build flatpak appimage
+    needs: haskell_build
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, macos-12]
+    runs-on: ubuntu-24.04
     steps:
       - name: git checkout
         uses: actions/checkout@v4
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-
-      # Nix-specific logic begins here
-      - name: Check it builds
-        run: nix build .
-
-  build_and_test_nix:
-    name: build flatpak appimage
-    needs: check_nix
-    strategy:
-      matrix:
-        os: [ubuntu-22.04, macos-12]
-    runs-on: ubuntu-22.04
-    steps:
-      - name: git checkout
-        uses: actions/checkout@v3
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: some cache jive
+        uses: DeterminateSystems/magic-nix-cache-action@main
       - name: build package
-        run: |
-          nix build .
+        run: nix build .
       - name: Build flatpak
         run: nix bundle --bundler github:ralismark/nix-appimage .
