@@ -1,5 +1,4 @@
-# Our desired pipeline using only a Nix shell environment
-name: Check and build the TODOs API (Nix)
+name: Check, build, release topdf
 
 on:
   push:
@@ -7,12 +6,9 @@ on:
       - main
     tags:
       - "v*.*.*"
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  check_nix:
+  haskell_build:
     name: check that it builds
     strategy:
       matrix:
@@ -20,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
