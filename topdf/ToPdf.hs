@@ -28,8 +28,7 @@ main = do
     sh $ do
         tmpdir <- mktempdir "/tmp" "topdf"
         dirs <- liftIO $ Dirs <$> makeAbsolute i <*> makeAbsolute o <*> pure tmpdir
-        cwd <- pwd
-        count_ <- fold (find (suffix "jpg") cwd) Fold.length
+        count_ <- fold (find (suffix "jpg") i) Fold.length
         pb <- liftIO $ newProgressBar defStyle 10 $ Progress 0 (count_ + 1) ()
         sh $ pngToJpg dirs pb
         jpgToPdf dirs
