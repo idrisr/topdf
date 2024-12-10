@@ -26,5 +26,8 @@ Available options:
 
 ### docker
 
+### any linux
+Download the file `topdf.AppImage` for the release. Make it executable and then run it.
+
 ## Use Case
 Useful for compiling screenshots from a video into a single pdf.
