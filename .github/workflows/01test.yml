@@ -16,3 +16,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+# Use the upload-artifact action:
+  # In your workflow, add the upload-artifact action to upload the generated
+  # artifacts to GitHub Actions. This action allows you to specify the artifact
+  # name, path, and other metadata.
+# Create a release:
+  # In your workflow, use the create-release action to create a new release in
+  # your GitHub repository. This action requires a release_name, tag_name, and
+  # other metadata.
+# Upload artifacts to the release:
+  # Use the upload-release-asset action to upload the previously uploaded
+  # artifacts to the newly created release. This action requires the upload_url,
+  # asset_path, asset_name, and asset_content_type parameters.
