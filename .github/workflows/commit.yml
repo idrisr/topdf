@@ -1,5 +1,5 @@
-name: check, build, release topdf
-run-name: big dog hog by @${{ github.actor }}
+name: commit
+run-name: commit
 
 on:
   push:

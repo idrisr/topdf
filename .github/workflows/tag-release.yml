@@ -1,7 +1,8 @@
-name: check, build, release topdf
-run-name: big dog hog by @${{ github.actor }}
+name: release
+run-name: release
 
 on:
+  push:
     tags:
       - "v*.*.*"
 
