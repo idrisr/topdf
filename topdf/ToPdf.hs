@@ -48,9 +48,9 @@ pngToJpg dirs@(Dirs input _ _) pb = do
         inproc "magick" z $ pure . unsafeTextToLine . pack $ jpg
 
 jpgToPdf :: Dirs -> Shell ()
-jpgToPdf (Dirs _ output tmp) = do
+jpgToPdf (Dirs input output tmp) = do
     png <- fold (sort (find (suffix "png") tmp)) Fold.list
-    let name = takeBaseName output `addExtension` "pdf"
+    let name = takeBaseName input `addExtension` "pdf"
     let inputFiles = pack <$> join png ++ [tmp </> name]
     sh $ inproc "magick" inputFiles empty
     cp (tmp </> name) (output </> name)
