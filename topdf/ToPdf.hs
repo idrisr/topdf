@@ -4,7 +4,6 @@ module Main where
 
 import Control.Foldl qualified as Fold
 import Control.Monad
-import Data.Ratio
 import Data.Text (pack)
 import Options.Applicative
 import System.Directory
