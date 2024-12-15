@@ -72,10 +72,14 @@ parseParams =
                 <> short 'i'
                 <> long "input"
                 <> help "directory containing jpgs to collate"
+                <> value "."
+                <> showDefault
             )
         <*> strOption
             ( metavar "<OUTPUT>"
                 <> short 'o'
                 <> long "output"
                 <> help "destination for pdf"
+                <> value "."
+                <> showDefault
             )
