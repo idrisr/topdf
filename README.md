@@ -6,13 +6,13 @@ a single pdf.
 ```
 take a directory of jpgs and create a pdf
 
-Usage: topdf (-i|--input <INPUT>) (-o|--output <OUTPUT>)
+Usage: topdf [-i|--input <INPUT>] [-o|--output <OUTPUT>]
 
   take a directory of jpgs and create a pdf
 
 Available options:
-  -i,--input <INPUT>       directory containing jpgs to collate
-  -o,--output <OUTPUT>     destination for pdf
+  -i,--input <INPUT>       directory containing jpgs to collate (default: ".")
+  -o,--output <OUTPUT>     destination for pdf (default: ".")
   -h,--help                Show this help text
 ```
 
